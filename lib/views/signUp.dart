@@ -27,6 +27,10 @@ class _SignUpState extends State<SignUp> {
   AuthMethods authMethods = new AuthMethods();
   DatabaseMethods databaseMethods = new DatabaseMethods();
 
+  defaultUserList(){
+    HelperFunctions.sharedPreferencesSecretUserMap = "{}";
+  }
+
   signMeUp() {
     if (formKey.currentState.validate()) {
       Map<String, String> userInfoMap = {

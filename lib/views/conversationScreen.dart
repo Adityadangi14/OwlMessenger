@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:chatapp/helper/constants.dart';
 import 'package:chatapp/services/database.dart';
+import 'package:chatapp/services/encryption.dart';
 import 'package:chatapp/widgets/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart ';
@@ -20,6 +21,8 @@ class _ConversationScreenState extends State<ConversationScreen> {
   TextEditingController messageController = new TextEditingController();
 
   ScrollController _scrollController = new ScrollController();
+
+  Encryption encryption = new Encryption();
 
   Stream chatMessageStream;
 
@@ -53,7 +56,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
     if (messageController.text.isNotEmpty) {
       print('inside if-------');
       Map<String, dynamic> messageMap = {
-        "message": messageController.text,
+        "message": encryption.encryptedString( messageController.text),
         "sendby": Constants.MyName,
         "time": DateTime.now().microsecondsSinceEpoch
       };

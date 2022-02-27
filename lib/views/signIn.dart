@@ -21,6 +21,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   AuthMethods authMethods = new AuthMethods();
   DatabaseMethods databaseMethods = new DatabaseMethods();
+  
 
   final formKey = GlobalKey<FormState>();
   TextEditingController emailTextEditingController =
@@ -30,6 +31,11 @@ class _SignInState extends State<SignIn> {
 
   bool isLoading = false;
   QuerySnapshot snapshotUserInfo;
+
+  defaultUserList(){
+    HelperFunctions.sharedPreferencesSecretUserMap = "{}";
+  }
+
 
   signMeIn() async {
     if (formKey.currentState.validate()) {
